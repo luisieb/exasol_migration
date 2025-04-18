@@ -1,14 +1,15 @@
 # exasol_migration
 
-# Exasol deployment. Full doc under https://docs.exasol.com/db/latest/administration/aws/installation.htm 
-- You need to configure the aws cli and aws credentials (use service_isc_pdap_cloudetl02 aws profile), and an existent security group for the 
+# Exasol deployment. 
+NOTE: Full doc under https://docs.exasol.com/db/latest/administration/aws/installation.htm 
+## - You need to configure the aws cli and aws credentials (use service_isc_pdap_cloudetl02 aws profile), and an existent security group for the 
 previous version 7 clusters, and add port 20003 and 20002 (for more info look at the AWS isc-bi-stg01 account into sg for dev sg-0e578844cc94f6f60 - isc-imt-exasol-dev-DBSecurityGroup-1SWOHESN7XLLE for the needed inbound rules)
 NOTE: Please also check the instance type and the data voulumes size that need to be passed to the c4 config.
-- Then install the c4 too using (version = 4.24.3 for exasol 8.33.0 latest version) and later add it to the PATH: 
+## - Then install the c4 too using (version = 4.24.3 for exasol 8.33.0 latest version) and later add it to the PATH: 
 ```bash
 wget https://x-up.s3.amazonaws.com/releases/c4/linux/x86_64/2.24.3/c4 -O c4 && chmod +x c4
 ```
-- Then create a ~/.ccc folder and a file ~/.ccc/config as this example:
+## - Then create a ~/.ccc folder and a file ~/.ccc/config as this example:
 ```bash
 CC_USER_EMAIL=devops@eventim.de
 CCC_PLAY_ACCESS_NODE=true
@@ -122,11 +123,11 @@ just save then in a AWS s3 bucket:
 CCC_AWS_TEMPLATE_URL='s3://x-u/ib4290/custom-tmpl' c4 aws play -N 12 -T @exasol-8.33.0
 ```
 
-# Exasol migration step by step from exasol 7.1 to exasol 8 (only the deployment is not depicted here)
+# Exasol migration step by step from exasol 7.1 to exasol 8 
 NOTE: You need a cluster with the same number of data nodes and one access node in exasol 8 to migrate from exasol 7.1
 IMPORTANT: The full documentation of this is on https://docs.exasol.com/db/latest/administration/aws/upgrade/migrate_71_v8.htm
 
-1. Upload licence and create remote volume with access to the backups for exasol 7.1 version:
+## 1. Upload licence and create remote volume with access to the backups for exasol 7.1 version:
 - First spet connect to the access node, upload the licence creating a file and copy pasting the content of the license to that file inside the access node
 - Then create a remote volume linked to the s3 where the verison 7.1 backups are
 NOTE: Add the s3 bucket arn into the instance role (isc-imt-exasol8-dev-InstanceRole) in orther to be accesible from our new exasol8 deployment, dont forget to add * to get access to the full bucket. 
