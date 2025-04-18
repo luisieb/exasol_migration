@@ -1,7 +1,7 @@
 # exasol_migration
 
 # Exasol deployment. 
-### NOTE: Full doc under https://docs.exasol.com/db/latest/administration/aws/installation.htm 
+##### NOTE: Full doc under https://docs.exasol.com/db/latest/administration/aws/installation.htm 
  - You need to configure the aws cli and aws credentials (use service_isc_pdap_cloudetl02 aws profile), and an existent security group for the 
 previous version 7 clusters, and add port 20003 and 20002 (for more info look at the AWS isc-bi-stg01 account into sg for dev sg-0e578844cc94f6f60 - isc-imt-exasol-dev-DBSecurityGroup-1SWOHESN7XLLE for the needed inbound rules)
 ### NOTE: Please also check the instance type and the data voulumes size that need to be passed to the c4 config.
